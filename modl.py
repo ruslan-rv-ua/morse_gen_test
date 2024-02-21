@@ -269,32 +269,32 @@ def write_wav(f, channels, sample_width=SAMPLE_WIDTH, raw_samples=False, seekabl
 
 
 
+if __name__ == '__main__':
+    b1 = beep(440, seconds=.1)
+    b2 = beep(880, seconds=.1)
+    # bb = list(b)
+    #play(b2)
 
-b1 = beep(440, seconds=.1)
-b2 = beep(880, seconds=.1)
-# bb = list(b)
-#play(b2)
+    def dot():
+        return beep(880, seconds=0.1)
+    def dash():
+        return beep(880, seconds=0.3)
 
-def dot():
-    return beep(880, seconds=0.1)
-def dash():
-    return beep(880, seconds=0.3)
+    def pause():
+        return silence(.1)
+    def pause_letter():
+        return silence(.3)
 
-def pause():
-    return silence(.1)
-def pause_letter():
-    return silence(.3)
+    def s():
+        return itertools.chain(dot(), pause(), dot(), pause(), dot())
+    def o():
+        return itertools.chain(dash(), pause(), dash(), pause(), dash())
+    sos = itertools.chain(s(), pause_letter(), o(), pause_letter(),s())
+    sss = list(sos)
 
-def s():
-    return itertools.chain(dot(), pause(), dot(), pause(), dot())
-def o():
-    return itertools.chain(dash(), pause(), dash(), pause(), dash())
-sos = itertools.chain(s(), pause_letter(), o(), pause_letter(),s())
-sss = list(sos)
-
-play(sss)
-#with open("output.wav", "wb") as f:
-#    write_wav(f, sss)
+    play(sss)
+    #with open("output.wav", "wb") as f:
+    #    write_wav(f, sss)
 
 
 
